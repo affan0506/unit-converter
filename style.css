@@ -1,0 +1,176 @@
+/* Import font modern */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
+
+:root {
+    /* Tema Tahun Baru: Merah, Emas, dan Gelap */
+    --primary-red: #e63946;
+    --gold: #ffb703;
+    --glass-bg: rgba(15, 23, 42, 0.85);
+    --text-light: #f8fafc;
+    /* Ganti URL ini dengan gambar Hero ML kegemaran anda (Gusion, Chou, etc.) */
+    --hero-url: url('https://images.alphacoders.com/108/1083325.jpg'); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    /* Background Hero ML */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), var(--hero-url);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-light);
+    padding: 20px;
+}
+
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.accent {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(255, 183, 3, 0.5);
+}
+
+header p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+/* Category Dropdown */
+#unitCategory {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--gold);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Input Cards */
+.input-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-card label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+input::placeholder { color: #64748b; }
+
+.swap-icon {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: var(--primary-red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+/* History Section */
+.history-card {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#historyList {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#historyList li {
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-text:hover { color: var(--primary-red); }
