@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Engineering Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1>Engineering <span class="accent">Unit</span></h1>
+            <p>Precision Measurement Suite</p>
+        </header>
+
+        <section class="main-converter">
+            <div class="category-wrapper">
+                <select id="unitCategory">
+                    <option value="length">📏 Length</option>
+                    <option value="mass">⚖️ Mass</option>
+                    <option value="temp">🌡️ Temperature</option>
+                </select>
+            </div>
+
+            <div class="input-grid">
+                <div class="input-card">
+                    <label>From</label>
+                    <input type="number" id="inputValue" placeholder="Enter value">
+                    <select id="fromUnit"></select>
+                </div>
+
+                <div class="swap-icon">⇌</div>
+
+                <div class="input-card">
+                    <label>To</label>
+                    <input type="number" id="outputValue" readonly placeholder="Result">
+                    <select id="toUnit"></select>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="saveBtn" class="btn-primary">Save Conversion</button>
+            </div>
+        </section>
+
+        <section class="history-card">
+            <div class="history-header">
+                <h3>Recent Activity</h3>
+                <button id="clearHistory" class="btn-text">Clear All</button>
+            </div>
+            <ul id="historyList"></ul>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
