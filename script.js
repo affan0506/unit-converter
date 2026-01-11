@@ -1,80 +1,47 @@
-const unitData = {
-    length: { Meters: 1, Kilometers: 1000, Miles: 1609.34, Feet: 0.3048, Inches: 0.0254 },
-    mass: { Kilograms: 1, Grams: 0.001, Pounds: 0.453592, Ounces: 0.0283495 },
+const units = {
+    length: { Meters: 1, Kilometers: 1000, Miles: 1609.34, Feet: 0.3048 },
+    mass: { Kilograms: 1, Grams: 0.001, Pounds: 0.453592 },
     temp: ['Celsius', 'Fahrenheit', 'Kelvin']
 };
 
-const category = document.getElementById('unitCategory');
-const fromSelect = document.getElementById('fromUnit');
-const toSelect = document.getElementById('toUnit');
-const inputField = document.getElementById('inputValue');
-const outputField = document.getElementById('outputValue');
+const cat = document.getElementById('unitCategory');
+const fromU = document.getElementById('fromUnit');
+const toU = document.getElementById('toUnit');
+const input = document.getElementById('inputValue');
+const output = document.getElementById('outputValue');
 
-function populateUnits() {
-    const type = category.value;
-    const options = type === 'temp' ? unitData.temp : Object.keys(unitData[type]);
-    
-    const html = options.map(u => `<option value="${u}">${u}</option>`).join('');
-    fromSelect.innerHTML = html;
-    toSelect.innerHTML = html;
-    // Set default "To" unit to something different
-    if(toSelect.options.length > 1) toSelect.selectedIndex = 1;
-    performConversion();
+function setup() {
+    const type = cat.value;
+    const options = type === 'temp' ? units.temp : Object.keys(units[type]);
+    const list = options.map(u => `<option value="${u}">${u}</option>`).join('');
+    fromU.innerHTML = toU.innerHTML = list;
+    convert();
 }
 
-function performConversion() {
-    const val = parseFloat(inputField.value);
-    if (isNaN(val)) {
-        outputField.value = "";
-        return;
-    }
+function convert() {
+    const v = parseFloat(input.value);
+    if (isNaN(v)) return output.value = "";
 
-    // Input Validation: No negative mass or length
-    if ((category.value === 'mass' || category.value === 'length') && val < 0) {
-        outputField.value = "Error: Value < 0";
-        return;
-    }
-
-    let result;
-    if (category.value === 'temp') {
-        result = convertTemperature(val, fromSelect.value, toSelect.value);
+    if (cat.value === 'temp') {
+        output.value = calcTemp(v, fromU.value, toU.value).toFixed(2);
     } else {
-        const ratio = unitData[category.value][fromSelect.value] / unitData[category.value][toSelect.value];
-        result = val * ratio;
+        const res = v * (units[cat.value][fromU.value] / units[cat.value][toU.value]);
+        output.value = res.toFixed(4);
     }
-
-    outputField.value = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
 }
 
-function convertTemperature(v, from, to) {
-    let c;
-    if (from === 'Celsius') c = v;
-    else if (from === 'Fahrenheit') c = (v - 32) * 5/9;
-    else c = v - 273.15;
-
-    if (to === 'Celsius') return c;
-    if (to === 'Fahrenheit') return (c * 9/5) + 32;
-    return c + 273.15;
+function calcTemp(v, f, t) {
+    let c = (f === 'Celsius') ? v : (f === 'Fahrenheit') ? (v-32)*5/9 : v-273.15;
+    return (t === 'Celsius') ? c : (t === 'Fahrenheit') ? (c*9/5)+32 : c+273.15;
 }
 
-// History Management
-document.getElementById('saveBtn').addEventListener('click', () => {
-    if (!outputField.value || outputField.value.includes("Error")) return;
-    
-    const entry = `${inputField.value} ${fromSelect.value} ➜ ${outputField.value} ${toSelect.value}`;
+document.getElementById('saveBtn').onclick = () => {
+    if(!output.value) return;
     const li = document.createElement('li');
-    li.innerHTML = `<span>${entry}</span><small>${new Date().toLocaleTimeString()}</small>`;
+    li.textContent = `${input.value}${fromU.value} = ${output.value}${toU.value}`;
     document.getElementById('historyList').prepend(li);
-});
+};
 
-document.getElementById('clearHistory').addEventListener('click', () => {
-    document.getElementById('historyList').innerHTML = "";
-});
-
-// Event Listeners
-[category, fromSelect, toSelect, inputField].forEach(el => {
-    el.addEventListener('change', performConversion);
-    el.addEventListener('input', performConversion);
-});
-category.addEventListener('change', populateUnits);
-window.addEventListener('DOMContentLoaded', populateUnits);
+cat.onchange = setup;
+[input, fromU, toU].forEach(el => el.oninput = convert);
+window.onload = setup;

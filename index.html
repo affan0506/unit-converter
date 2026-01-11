@@ -3,33 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core Engineering Converter</title>
+    <title>MLBB Engineering Converter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="glass-container">
         <header>
-            <h1>Engineering <span class="accent">Unit</span></h1>
-            <p>Precision Measurement Suite</p>
+            <h1>CONVERTER <span class="accent">2026</span></h1>
+            <p>Victory or Defeat? Accuracy is Key.</p>
         </header>
 
         <section class="main-converter">
-            <div class="category-wrapper">
-                <select id="unitCategory">
-                    <option value="length">📏 Length</option>
-                    <option value="mass">⚖️ Mass</option>
-                    <option value="temp">🌡️ Temperature</option>
-                </select>
-            </div>
+            <select id="unitCategory">
+                <option value="length">📏 Length (Jarak)</option>
+                <option value="mass">⚖️ Mass (Berat)</option>
+                <option value="temp">🌡️ Temperature (Suhu)</option>
+            </select>
 
             <div class="input-grid">
                 <div class="input-card">
                     <label>From</label>
-                    <input type="number" id="inputValue" placeholder="Enter value">
+                    <input type="number" id="inputValue" placeholder="0.00">
                     <select id="fromUnit"></select>
                 </div>
 
-                <div class="swap-icon">⇌</div>
+                <div class="swap-icon">⚔️</div>
 
                 <div class="input-card">
                     <label>To</label>
@@ -38,15 +36,13 @@
                 </div>
             </div>
 
-            <div class="action-buttons">
-                <button id="saveBtn" class="btn-primary">Save Conversion</button>
-            </div>
+            <button id="saveBtn" class="btn-primary">SAVE CONVERSION</button>
         </section>
 
         <section class="history-card">
             <div class="history-header">
-                <h3>Recent Activity</h3>
-                <button id="clearHistory" class="btn-text">Clear All</button>
+                <h3>RECENT LOGS</h3>
+                <button id="clearHistory" class="btn-text">CLEAR</button>
             </div>
             <ul id="historyList"></ul>
         </section>
